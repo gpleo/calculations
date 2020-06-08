@@ -6,7 +6,7 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      questionCount: 80,
+      questionCount: 180,
       questions: [],
       controlsVisible: true,
       showAnswer: false,
@@ -84,11 +84,8 @@ class App extends React.Component {
           this.state.controlsVisible && (
             <div style={{ marginBottom: 10 }}>
               <Radio.Group onChange={this.handleQuestionCountChange} style={{ marginRight: 10 }} value={this.state.questionCount}>
-                <Radio.Button value={20}>20题</Radio.Button>
-                <Radio.Button value={50}>50题</Radio.Button>
-                <Radio.Button value={80}>80题</Radio.Button>
-                <Radio.Button value={100}>100题</Radio.Button>
-                <Radio.Button value={200}>200题</Radio.Button>
+                <Radio.Button value={90}>90题</Radio.Button>
+                <Radio.Button value={180}>180题</Radio.Button>
               </Radio.Group>
               <Button type="primary" onClick={this.refresh} style={{ marginRight: 10 }}>重新生成</Button>
               <Button type="primary" onClick={this.print} style={{ marginRight: 10 }}>打印</Button>
@@ -102,6 +99,21 @@ class App extends React.Component {
             </div>
           )
         }
+
+        {
+          !this.state.controlsVisible && (
+            <div style={{ marginBottom: 10 }}>
+              {
+                [1, 2].map((v) => (
+                  <span key={v} style={{ display: 'inline-block', width: '50%' }}>
+                    日期:_____________ 用时:_____________ 成绩:_____________
+                  </span>
+                ))
+              }
+            </div>
+          )
+        }
+
         <div id="calculations">
           {
             this.state.questions.map((v, i) => {
